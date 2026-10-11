@@ -70,6 +70,31 @@ example {n : ℕ} :
   simp [this, Real.volume_Icc_pi]
 ```
 
+Mathlib also provides a normalized version for Euclidean space under the name
+{name}`euclideanHausdorffMeasure` and notation `μHE[d]`. While it is defined for all Borel metric
+space, it is mostly useful for inner product affine spaces.
+```lean
+variable (V X : Type*)
+  [NormedAddCommGroup V] [InnerProductSpace ℝ V]
+  [MetricSpace X] [MeasurableSpace X] [BorelSpace X]
+  [NormedAddTorsor V X]
+  (d : ℕ)
+
+#check euclideanHausdorffMeasure (X := X) d
+#check (μHE[d] : Measure X)
+```
+
+The normalization is witnessed by the area of the unit disk
+```lean
+open EuclideanSpace Metric Real in
+example :
+    μHE[2] (ball 0 1 : Set (EuclideanSpace ℝ (Fin 2))) =
+      ENNReal.ofReal π := by
+  rw [euclideanHausdorffMeasure_eq_volume,
+    EuclideanSpace.volume_ball]
+  norm_num [pi_nonneg]
+```
+
 # Connection to Lebesgue and Haar
 
 In Mathlib, the real numbers carry the Lebesgue measure as their canonical measure.
