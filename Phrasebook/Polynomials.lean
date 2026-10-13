@@ -361,7 +361,7 @@ a function `σ →₀ ℕ` recording the exponent of each variable.
 ```lean -show
 variable {σ R : Type*} [CommSemiring R] (p : MvPolynomial σ R) (m : σ →₀ ℕ)
 ```
-The coefficient of `p` at multidegree `m` is {name}`MvPolynomial.coeff`,
+The coefficient of `p` at multidegree `m` is {name}`MvPolynomial.coeffs`,
 which takes a `σ →₀ ℕ` rather than a single natural number:
 ```lean
 example : R := p.coeff m
