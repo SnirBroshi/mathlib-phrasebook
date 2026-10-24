@@ -87,6 +87,11 @@ Familiar kinds of groups appear in Mathlib as follows:
 - *Finitely generated groups*: {name}`Group.FG`
 - *Finitely presented groups*: {name}`Group.IsFinitelyPresented`
 - *Virtually nilpotent groups*: {name}`Group.IsVirtuallyNilpotent`
+- *Virtually cyclic groups*: {name}`Group.IsVirtuallyCyclic`
+- *Torsion groups*: {name}`IsMulTorsion`
+- *Torsion-free groups*: {name}`IsMulTorsionFree`
+- *Groups with unique roots*: {name}`HasUniqueRoots`
+- *Divisible groups*: {name}`DivisibleBy`
 
 Use {name}`Group.nilpotencyClass` to get the nilpotency class of a group
 (or zero if the group is not nilpotent).
