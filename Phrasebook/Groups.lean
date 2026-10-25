@@ -76,22 +76,44 @@ variable (H : Type*) [Group H]
 
 # Properties of groups
 
-Familiar kinds of groups appear in Mathlib as follows:
-- *Nilpotent groups*: {name}`Group.IsNilpotent`
-- *Solvable groups*: {name}`Group.IsSolvable`
-- *Simple groups*: {name}`IsSimpleGroup`
-- *Cyclic groups*: {name}`IsCyclic`
-- *Perfect groups*: {name}`Group.IsPerfect`
-- *p-groups* (or *π-groups*): {name}`IsPGroup`
-- *Z-groups*: {name}`IsZGroup`
-- *Finitely generated groups*: {name}`Group.FG`
-- *Finitely presented groups*: {name}`Group.IsFinitelyPresented`
-- *Virtually nilpotent groups*: {name}`Group.IsVirtuallyNilpotent`
-- *Virtually cyclic groups*: {name}`Group.IsVirtuallyCyclic`
-- *Torsion groups*: {name}`IsMulTorsion`
-- *Torsion-free groups*: {name}`IsMulTorsionFree`
-- *Groups with unique roots*: {name}`HasUniqueRoots`
-- *Divisible groups*: {name}`DivisibleBy`
+Use class variables to assert properties of groups:
+```lean
+-- `G` is nilpotent:
+variable [Group.IsNilpotent G]
+-- `G` is solvable:
+variable [Group.IsSolvable G]
+-- `G` is simple:
+variable [IsSimpleGroup G]
+-- `G` is cyclic:
+variable [IsCyclic G]
+-- `G` is perfect:
+variable [Group.IsPerfect G]
+-- `G` is a p-group (π-group): (not a class)
+variable {p : ℕ} (h : IsPGroup p G)
+-- `G` is a p-group for a prime `p`:
+variable {p : ℕ} (hp : p.Prime) (h : IsPGroup p G)
+-- `G` is a Z-group:
+variable [IsZGroup G]
+-- `G` is finitely generated:
+variable [Group.FG G]
+-- `G` is finitely presented:
+variable [Group.IsFinitelyPresented G]
+-- `G` is vritually nilpotent: (not a class)
+variable (h : Group.IsVirtuallyNilpotent G)
+-- `G` is vritually cyclic:
+variable [Group.IsVirtuallyCyclic G]
+-- `G` is a torsion group:
+variable (h : IsMulTorsion G)
+-- `G` is torsion-free:
+variable [IsMulTorsionFree G]
+-- `G` has unique roots:
+variable [HasUniqueRoots G]
+-- `G` is rootable:
+variable [RootableBy G ℕ]
+-- or the more familiar name additive equivalent,
+-- `A` is divisible:
+variable [DivisibleBy A ℕ]
+```
 
 Use {name}`Group.nilpotencyClass` to get the nilpotency class of a group
 (or zero if the group is not nilpotent).
