@@ -228,10 +228,12 @@ recall Subgroup.index_eq_card :
 
 Use class variables to assert properties of subgroups:
 ```lean
--- `H` is normal:
+-- `H` is normal in `G`:
 variable [H.Normal]
--- `H` is characteristic:
+-- `H` is characteristic in `G`:
 variable [H.Characteristic]
+-- `H` is subnormal in `G`: (not a class)
+variable (h : H.IsSubnormal)
 -- `H` is of finite index in `G`:
 variable [H.FiniteIndex]
 -- `H` is of finite index as a subgroup of `K`:
@@ -275,6 +277,8 @@ variable (s : Set G) (p n : ℕ)
 #check H.normalCore
 -- The focal subgroup of a subgroup:
 #check H.focalSubgroup
+-- The Frattini subgroup of the group:
+#check frattini G
 -- The torsion subgroup of a commutative group:
 #check CommGroup.torsion G'
 -- The `p`-primary component of a group:
@@ -319,6 +323,11 @@ variable (I : Subgroup H)
 -- we can consider `I` as a subgroup of `G`:
 -- (with a type of `Subgroup G`)
 #check I.map H.subtype
+```
+e.g. you can use {name}`Subgroup.subgroupOf` to say that a subgroup is normal in another one:
+```lean
+-- `H` is normal as a subgroup of `K`:
+variable [(H.subgroupOf K).Normal]
 ```
 
 # Quotients
